@@ -34,6 +34,8 @@ import java.util.List;
 
 public class ForecastFragment extends Fragment {
 
+    ArrayAdapter<String> adapter = null;
+
     public ForecastFragment(){
 
     }
@@ -80,7 +82,7 @@ public class ForecastFragment extends Fragment {
 
         List<String> weekForecast = new ArrayList<String>(Arrays.asList(forecastArray));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        adapter = new ArrayAdapter<String>(
                 getActivity(),
                 R.layout.list_item_view,
                 R.id.list_item_forecast_textview,
@@ -127,7 +129,6 @@ public class ForecastFragment extends Fragment {
                     .appendQueryParameter(APPID_PARAM, apiKey)
                     .build();
 
-            Log.v("uri", builtUri.toString());
 
             try {
 
@@ -161,7 +162,6 @@ public class ForecastFragment extends Fragment {
                 }
 
                 forecastJson = buffer.toString();
-                Log.v("JSON", forecastJson);
 
             } catch(IOException e){
 
@@ -186,8 +186,8 @@ public class ForecastFragment extends Fragment {
 
             try {
                 return getWeatherDataFromJson(forecastJson, numDays);
-
             } catch (JSONException e) {
+                Log.e(LOG_TAG, e.getMessage(), e);
                 e.printStackTrace();
             }
 
@@ -277,10 +277,17 @@ public class ForecastFragment extends Fragment {
                 resultStrs[i] = day + " - " + description + " - " + highAndLow;
             }
 
-            for (String s : resultStrs) {
-                Log.v(LOG_TAG, "Forecast entry: " + s);
-            }
             return resultStrs;
+
+        }
+
+        @Override
+        protected void onPostExecute(String[] strings) {
+            super.onPostExecute(strings);
+            List weatherStrings = new ArrayList<String>(Arrays.asList(strings));
+
+            adapter.clear();
+            adapter.addAll(weatherStrings);
 
         }
     }
