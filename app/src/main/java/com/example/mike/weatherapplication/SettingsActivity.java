@@ -1,5 +1,6 @@
 package com.example.mike.weatherapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -44,6 +45,9 @@ public class SettingsActivity extends PreferenceActivity
             } else {
                 preference.setSummary(stringValue);
             }
+
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+
 
         }
 

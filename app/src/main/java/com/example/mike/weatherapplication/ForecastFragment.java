@@ -85,6 +85,18 @@ public class ForecastFragment extends Fragment {
         fetchWeatherTask.execute(location);
     }
 
+//    if(savedInstanceState == null) {
+//        getSupportFragmentManager().beginTransaction()
+//                .add(R.id.container, new DetailFragment());
+//    }
+//
+//
+//    TextView textView = (TextView) findViewById(R.id.content_detail_textView);
+//
+//    String forecast = getIntent().getStringExtra(Intent.EXTRA_TEXT);
+//
+//    textView.setText(forecast);
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
