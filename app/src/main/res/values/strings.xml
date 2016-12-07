@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">WeatherApplication</string>
     <string name="action_refresh">Refresh</string>
     <string name="settings">Settings</string>
@@ -36,6 +37,7 @@
     <string name="pref_units_imperial" translatable="false">imperial</string>
 
     <string name="action_map">Map Location</string>
+
     <string name="share">Share</string>
 
 </resources>
